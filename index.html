@@ -14,7 +14,7 @@
   <!-- ── HEADER & NAV ───────────────────────────── -->
   <header>
     <!-- <h1>Akira</h1> -->
-
+    
     <!-- hamburger checkbox (mobile) -->
     <nav>
       <input type="checkbox" id="nav-toggle">
@@ -27,6 +27,19 @@
         <li><a href="#writing">Writing</a></li>
       </ul>
     </nav>
+
+
+    
+    <!-- DARK MODE SWITCH -->
+    <div class="mode-switch">
+      <label for="dark-toggle" aria-label="Toggle dark mode">
+        <input type="checkbox" id="dark-toggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+
+    
   </header>
 
   <!-- ── MAIN CONTENT (SINGLE-PAGE SECTIONS) ───────────────────── -->
@@ -35,7 +48,7 @@
     <section id="about" class="page active">
       <h2>Salutations! I'm Akira :D</h2>
       <p>
-        bio here
+        I'm an undergraduate at UW–Madison, majoring in mathematics and engineering physics; in particular, I study representation theory with a focus on homological methods. Outised class, I enjoy talking with friends and exploring maths. I speak English as well as a wee bit of Spanish, French, and Chinese; I'm also learning German! In addition to these other subjects, I also relish learning about learning itself (and, more generally, methods for productivity overall). Please feel free to reach out if you'd like to chat about maths, learning/self-improvement, languages, or anything else! :D
       </p>
     </section>
 
@@ -71,7 +84,7 @@
 
     <!-- Writing / PDFs -->
     <section id="writing" class="page">
-      <h2>My papers &amp; notes</h2>
+      <h2>My papers and PDFs</h2>
       <ul>
         <!-- replace with real filenames in your /pdfs folder -->
         <li>
@@ -129,16 +142,15 @@
 
 
 
-    // Close the sidebar if you click outside of it (and not on the hamburger)
     document.addEventListener('click', e => {
       const navToggle = document.getElementById('nav-toggle');
-      // only act if the menu is open
-      if (!navToggle.checked) return;
+      if (!navToggle.checked) return;           // menu closed → skip
 
-      // if click is inside <nav> or on the <label> (hamburger), do nothing
+      // if click is inside <nav>, on the hamburger, or on the dark switch → skip
       if (
         e.target.closest('nav') ||
-        e.target.closest('label[for="nav-toggle"]')
+        e.target.closest('label[for="nav-toggle"]') ||
+        e.target.closest('.mode-switch')       // ← new exception
       ) {
         return;
       }
@@ -147,6 +159,22 @@
       navToggle.checked = false;
     });
 
+
+
+
+
+    // — DARK MODE TOGGLE —
+    // On load, read stored theme or default to light:
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    document.getElementById('dark-toggle').checked = (currentTheme === 'dark');
+
+    // When the switch is clicked, toggle and save:
+    document.getElementById('dark-toggle').addEventListener('change', e => {
+      const theme = e.target.checked ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+    });
   </script>
 </body>
 </html>
