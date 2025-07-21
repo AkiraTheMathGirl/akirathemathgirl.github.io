@@ -24,3 +24,7 @@ nav a:hover{opacity:.8}
     background:#fff;margin:5px 0}
 }
 main{padding:1.5rem;max-width:800px;margin:auto}
+
+/* Page-switching */
+.page{display:none}
+.page.active{display:block}
