@@ -11,19 +11,48 @@ nav ul{display:flex;gap:1rem;list-style:none}
 nav a{color:#fff;text-decoration:none}
 nav a:hover{opacity:.8}
 
-/* ---- Mobile tweaks ---- */
+/* hide the checkbox itself */
 #nav-toggle{display:none}
+
+/* ---------- Mobile (≤700 px) ---------- */
 @media (max-width:700px){
-  nav ul{                   /* hide the list */
-    position:fixed;left:0px;top:0;
-    width:200px;height:100%;flex-direction:column;
-    background:#10243d;padding-top:4rem;transition:.3s}
-  #nav-toggle:checked ~ nav ul{left:0px}
-  nav label{display:block;cursor:pointer}
-  nav label span{display:block;width:25px;height:3px;
-    background:#fff;margin:5px 0}
+
+  /* ☰ icon */
+  #nav-toggle + label{
+    display:block;              /* show on mobile */
+    cursor:pointer;
+    padding:.5rem;
+    z-index:1500;               /* sits above the drawer */
+  }
+  #nav-toggle + label span{
+    display:block;width:25px;height:3px;
+    background:#fff;margin:5px 0;
+  }
+
+  /* slide-out drawer (initially off-screen) */
+  nav ul{
+    position:fixed;
+    top:0; left:-220px;         /* hidden */
+    width:200px; height:100vh;
+    flex-direction:column;
+    list-style:none;
+    background:#10243d;
+    padding-top:4rem;
+    gap:1rem;
+    transition:left .3s ease;
+    z-index:1000;               /* above page content */
+  }
+
+  /* when the checkbox is ticked, move drawer in */
+  #nav-toggle:checked ~ nav ul{left:0}
 }
-main{padding:1.5rem;max-width:800px;margin:auto}
+
+/* ---------- Desktop (≥701 px) ---------- */
+@media (min-width:701px){
+  nav ul{display:flex;gap:1rem;list-style:none}
+  #nav-toggle + label{display:none}          /* hide ☰ on desktop */
+}
+
 
 /* Page-switching */
 .page{display:none}
