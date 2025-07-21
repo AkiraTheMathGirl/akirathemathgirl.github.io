@@ -5,13 +5,13 @@
 body{font-family:sans-serif;line-height:1.5}
 header{background:#183153;color:#fff;padding:.8rem 1rem}
 header h1{font-size:1.1rem}
+h2{text-align: center}
+main{padding:1rem 25%;}
 
 /* ---- Desktop nav ---- */
 nav ul{display:flex;gap:1rem;list-style:none}
 nav a{color:#fff;text-decoration:none}
-nav a:hover{opacity:.8}
-h2{text-align: center}
-main{padding:1rem 2rem;}
+nav a:hover{opacity:.8;font-size:1.5rem}
 
 /* hide the checkbox itself */
 #nav-toggle{display:none}
@@ -19,6 +19,7 @@ main{padding:1rem 2rem;}
 /* ---------- Mobile (≤700 px) ---------- */
 @media (max-width:700px){
 
+  main{padding:1rem 2rem;}
   /* ☰ icon */
   #nav-toggle + label{
     display:block;              /* show on mobile */
