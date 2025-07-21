@@ -4,21 +4,18 @@
   <meta charset="utf-8">
   <title>Akira | Home</title>
 
-  <!-- make mobile layouts scale correctly -->
+  <!-- mobile-friendly viewport -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- one shared stylesheet -->
+  <!-- shared styles -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- tiny router + mobile-menu helper -->
-  <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- ── PAGE HEADER & NAVIGATION ──────────────────────────────── -->
+  <!-- ── HEADER & NAV ───────────────────────────── -->
   <header>
     <h1>Akira</h1>
 
-    <!-- mobile hamburger: checkbox + three bars -->
+    <!-- hamburger checkbox (mobile) -->
     <input type="checkbox" id="nav-toggle">
     <label for="nav-toggle" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
@@ -27,8 +24,8 @@
     <nav>
       <ul>
         <li><a href="#about">About</a></li>
-        <li><a href="#links">Contact/links</a></li>
-        <li><a href="#writing">PDFs</a></li>
+        <li><a href="#links">Links</a></li>
+        <li><a href="#writing">Writing</a></li>
       </ul>
     </nav>
   </header>
@@ -89,5 +86,36 @@
       </ul>
     </section>
   </main>
+
+  <!-- ── INLINE JS ROUTER (12 lines) ─────────────── -->
+  <script>
+    /* helper to show the requested section */
+    function showPage(id){
+      const current = document.querySelector('.page.active');
+      if(current) current.classList.remove('active');     // hide old
+      const next = document.getElementById(id) ||         // try requested
+                   document.getElementById('about');      // fall back
+      next.classList.add('active');                       // show new
+    }
+
+    /* initial load (respect bookmark or default to ‘about’) */
+    showPage(location.hash.slice(1) || 'about');
+
+    /* on nav click, switch page without reloading */
+    document.querySelectorAll('nav a').forEach(link=>{
+      link.addEventListener('click', e=>{
+        e.preventDefault();
+        const id = link.getAttribute('href').slice(1);
+        history.pushState(null, '', '#'+id);  // update address bar
+        showPage(id);
+        /* close mobile sidebar */
+        document.getElementById('nav-toggle').checked = false;
+      });
+    });
+
+    /* make back/forward buttons work */
+    window.addEventListener('popstate', ()=>
+      showPage(location.hash.slice(1) || 'about'));
+  </script>
 </body>
 </html>
