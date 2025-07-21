@@ -56,7 +56,7 @@
              target="_blank" rel="noopener noreferrer">Pronouns.page</a>
         </li>
         <li>
-          <p>Discord: akirathemathgirl</p>
+          Discord: akirathemathgirl
         </li>
 <!--         <li>
           <a href="https://arxiv.org/a/.html"
@@ -126,6 +126,27 @@
     /* make back/forward buttons work */
     window.addEventListener('popstate', ()=>
       showPage(location.hash.slice(1) || 'about'));
+
+
+
+    // Close the sidebar if you click outside of it (and not on the hamburger)
+    document.addEventListener('click', e => {
+      const navToggle = document.getElementById('nav-toggle');
+      // only act if the menu is open
+      if (!navToggle.checked) return;
+
+      // if click is inside <nav> or on the <label> (hamburger), do nothing
+      if (
+        e.target.closest('nav') ||
+        e.target.closest('label[for="nav-toggle"]')
+      ) {
+        return;
+      }
+
+      // otherwise, close the menu
+      navToggle.checked = false;
+    });
+
   </script>
 </body>
 </html>
