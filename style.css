@@ -44,7 +44,7 @@ nav a:hover{opacity:.8}
   }
 
   /* when the checkbox is ticked, move drawer in */
-  #nav-toggle:checked ~ nav ul{left:0}
+  #nav-toggle:checked ~ ul{left:0}
 }
 
 /* ---------- Desktop (≥701 px) ---------- */
