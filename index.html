@@ -1,15 +1,34 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Akira’s Home Page</title>
-    <style>
-      body { font-family: sans-serif; margin: 2rem; }
-      h1   { color: steelblue; }
-    </style>
-  </head>
-  <body>
-    <h1></h1>testing</h1>
-    <p>This should be updated shortly :)</p>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Akira | About</title>
+  <link href="style.css" rel="stylesheet">
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Akira</h1>
+    <!-- MOBILE HAMBURGER -->
+    <input type="checkbox" id="nav-toggle">
+    <label for="nav-toggle">
+      <span></span><span></span><span></span>
+    </label>
+
+    <nav>
+      <ul>
+        <li><a href="index.html">About</a></li>
+        <li><a href="links.html">Links</a></li>
+        <li><a href="writing.html">Writing</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ***** ONLY THIS PART CHANGES PER PAGE ***** -->
+    <h2>Hi — I’m Akira!</h2>
+    <p>Short bio goes here…</p>
+    <!-- ******************************************* -->
+  </main>
+</body>
 </html>
