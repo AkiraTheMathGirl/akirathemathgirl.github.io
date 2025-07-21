@@ -74,7 +74,8 @@ nav a.active {
 /* ---------- Desktop (≥701 px) ---------- */
 @media (min-width:701px){
   nav ul{display:flex;gap:1rem;list-style:none}
-  #nav-toggle + label{display:none}          /* hide ☰ on desktop */
+  #nav-toggle{display:none}          /* hide ☰ on desktop */
+  nav label{display:none}
 }
 
 
