@@ -15,7 +15,7 @@ nav a:hover{opacity:.8}
 #nav-toggle{display:none}
 @media (max-width:700px){
   nav ul{                   /* hide the list */
-    position:fixed;left:-20px;top:0;
+    position:fixed;left:0px;top:0;
     width:200px;height:100%;flex-direction:column;
     background:#10243d;padding-top:4rem;transition:.3s}
   #nav-toggle:checked ~ nav ul{left:0px}
