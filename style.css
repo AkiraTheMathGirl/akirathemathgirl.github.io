@@ -18,7 +18,7 @@ nav a:hover{opacity:.8}
     position:fixed;left:-220px;top:0;
     width:200px;height:100%;flex-direction:column;
     background:#10243d;padding-top:4rem;transition:.3s}
-  #nav-toggle:checked+label+ul{left:0} /* slide in */
+  #nav-toggle:checked ~ nav ul{left:0}
   nav label{display:block;cursor:pointer}
   nav label span{display:block;width:25px;height:3px;
     background:#fff;margin:5px 0}
