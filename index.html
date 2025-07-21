@@ -13,7 +13,7 @@
 <body>
   <!-- ── HEADER & NAV ───────────────────────────── -->
   <header>
-<!--     <h1>Akira</h1> -->
+    <!-- <h1>Akira</h1> -->
 
     <!-- hamburger checkbox (mobile) -->
     <nav>
@@ -88,13 +88,24 @@
 
   <!-- ── INLINE JS ROUTER (12 lines) ─────────────── -->
   <script>
+    if (!location.hash) {
+      history.replaceState(null, '', '#about');
+    }
+    
     /* helper to show the requested section */
-    function showPage(id){
-      const current = document.querySelector('.page.active');
-      if(current) current.classList.remove('active');     // hide old
-      const next = document.getElementById(id) ||         // try requested
-                   document.getElementById('about');      // fall back
-      next.classList.add('active');                       // show new
+    function showPage(id) {
+      // — switch sections (existing code) —
+      document.querySelector('.page.active').classList.remove('active');
+      document.getElementById(id).classList.add('active');
+
+      // — NEW: switch the nav link underline —
+      // remove old
+      const oldLink = document.querySelector('nav a.active');
+      if (oldLink) oldLink.classList.remove('active');
+
+      // add to the one matching #id
+      const newLink = document.querySelector(`nav a[href="#${id}"]`);
+      if (newLink) newLink.classList.add('active');
     }
 
     /* initial load (respect bookmark or default to ‘about’) */
